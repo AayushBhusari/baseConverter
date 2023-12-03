@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dec2AnRev</title>
+    <style>
+      body {
+        height: 100dvh;
+        width: 100dvw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .all {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: aqua;
+        border: 2px solid black;
+        border-radius: 2rem;
+        padding: 1.2rem;
+      }
+
+      .btn-div {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+      }
+
+      .btn {
+        border-radius: 10px;
+        border: 1px solid black;
+        padding: 5px;
+        font-weight: 600;
+      }
+
+      .input {
+        height: 20%;
+        width: 90%;
+        border-radius: 20px;
+        padding: 10px;
+        font-size: 1.2rem;
+        text-align: right;
+      }
+
+      .first {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+
+      @media (max-width: 600px) {
+        .all {
+          margin: 20px;
+          background-color: royalblue;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="all">
+      <div class="first">
+        <input
+          type="text"
+          id="input"
+          class="input"
+          placeholder="Enter The Number      "
+        />
+      </div>
+
+      <br /><br />
+      <div class="btn-div">
+        <button class="btn" id="decToBin">Decimal To Binary</button>
+        <button class="btn" id="decToOct">Decimal To Octal</button>
+        <button class="btn" id="decToHex">Decimal To Hexadecimal</button>
+        <button class="btn" id="binToDec">Binary To Decimal</button>
+        <button class="btn" id="octToDec">Octal To Decimal</button>
+        <button class="btn" id="hexToDec">Hexadecimal To Decimal</button>
+      </div>
+    </div>
+    <script>
+      const convert = (e) => {
+        if (e.target !== e.currentTarget) {
+          let num = Number(document.getElementById("input").value);
+          let numStr = document.getElementById("input").value;
+          let toConvert = e.target.id;
+          if (toConvert == "decToBin") {
+            let res = num.toString(2);
+            document.getElementById("input").value = res;
+          } else if (toConvert == "decToOct") {
+            let res = num.toString(8);
+            document.getElementById("input").value = res;
+          } else if (toConvert == "decToHex") {
+            let res = num.toString(16).toUpperCase();
+            document.getElementById("input").value = res;
+          } else if (toConvert == "binToDec") {
+            let res = parseInt(num, 2);
+            document.getElementById("input").value = res;
+          } else if (toConvert == "octToDec") {
+            let res = parseInt(num, 8);
+            document.getElementById("input").value = res;
+          } else if (toConvert == "hexToDec") {
+            let numStrCorr = numStr.toLowerCase();
+            let res = parseInt(numStrCorr, 16);
+            document.getElementById("input").value = res;
+          } else {
+            alert("Invalid Input");
+          }
+        }
+      };
+
+      document.querySelector(".btn-div").addEventListener("click", convert);
+    </script>
+  </body>
+</html>
